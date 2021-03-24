@@ -5,25 +5,30 @@
         private $cod_produto;
         private $dsc_produto;
         private $preco;
-        private $qtd_produto;
-        private $estoque_min;
-        private $estoque_max;
 
-        //MÉTODOS
-        public function cadastrar_produto() {
-            //CONTEÚDO CADASTRAR PRODUTO
+        // GET E SET
+        public function setCodProduto($cod_prod){
+            $this->cod_produto = $cod_prod;
         }
 
-        public function alterar_produto() {
-            //CONTEÚDO ALTERAR PRODUTO
+        public function getCodProduto(){
+            return $this->cod_produto;
         }
 
-        public function ver_produto() {
-            //CONTEÚDO VER PRODUTO
+        public function setDscProduto($dsc_produto){
+            $this->dsc_produto = $dsc_produto;
         }
 
-        public function excluir_produto() {
-            //CONTEÚDO EXCLUIR PRODUTO
+        public function getDscProduto(){
+            return $this->dsc_produto;
+        }
+
+        public function setPreco($preco){
+            $this->preco = $preco;
+        }
+
+        public function getPreco(){
+            return $this->preco;
         }
 
     }
