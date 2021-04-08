@@ -5,6 +5,20 @@
         private $cod_produto;
         private $dsc_produto;
         private $preco;
+        
+        //CONSTRUTORES
+
+        public function __construct($cod_produto, $dsc_produto, $preco){
+            $this->cod_produto = $cod_produto;
+            $this->dsc_produto = $dsc_produto;
+            $this->preco = $preco;
+            echo "OBJETO CRIADO COM SUCESSOOOO!!!!";
+            echo "<br>";
+        }
+
+        public function __destruct(){
+            echo "OBJETO DESTRUIDO!!!";
+        }
 
         // GET E SET
         public function setCodProduto($cod_prod){
