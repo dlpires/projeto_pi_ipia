@@ -8,9 +8,10 @@
         protected $telefone;
         protected $endereco;
 
-        public function __construct($codigo, $nome){
+        public function __construct($codigo, $nome, $cpf){
             $this->codigo = $codigo;
             $this->nome = $nome;
+            $this->cpf = $cpf;
         } 
 
         //GETTERS E SETTERS
@@ -28,6 +29,30 @@
 
         public function getNome(){
             return $this->nome;
+        }
+
+        public function setCpf($cpf){
+            $this->cpf = $cpf;
+        }
+
+        public function getCpf(){
+            return $this->cpf;
+        }
+
+        public function setTelefone($telefone){
+            $this->telefone = $telefone;
+        }
+
+        public function getTelefone(){
+            return $this->telefone;
+        }
+
+        public function setEndereco($endereco){
+            $this->endereco = $endereco;
+        }
+
+        public function getEndereco(){
+            return $this->endereco;
         }
 
         //MÉTODOS

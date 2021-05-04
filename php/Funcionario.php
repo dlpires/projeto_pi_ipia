@@ -22,8 +22,8 @@
 
         //CONSTRUTOR 2 (CHAMANDO A SUPERCLASSE)
 
-        public function __construct($codigo, $nome, $usuario, $senha){
-            parent::__construct($codigo, $nome);
+        public function __construct($codigo, $nome, $cpf, $usuario, $senha){
+            parent::__construct($codigo, $nome, $cpf);
             $this->usuario = $usuario;
             $this->senha = $senha;
             echo "<br>";

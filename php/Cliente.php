@@ -1,12 +1,10 @@
 <?php
+
+    require_once "Pessoa.php";
+
     //CLASSE CLIENTE
-    class Cliente {
+    class Cliente extends Pessoa{
         //ATRIBUTOS
-        private $cod_cliente;
-        private $nm_cliente;
-        private $cpf_cliente;
-        private $tel_cliente;
-        private $endereco;
 
         //MÉTODOS
 

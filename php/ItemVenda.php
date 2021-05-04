@@ -4,6 +4,7 @@
         //ATRIBUTOS
         private $produto;
         private $qtd_item;
+        private $un_medida;
 
         //GETS E SETS
 
@@ -21,6 +22,14 @@
 
         public function getQtdItem(){
             return $this->qtd_item;
+        }
+
+        public function setUnMedida($un_medida){
+            $this->un_medida = $un_medida;
+        }
+
+        public function getUnMedida(){
+            return $this->un_medida;
         }
 
         //MÉTODOS
