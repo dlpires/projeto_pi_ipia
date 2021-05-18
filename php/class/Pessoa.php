@@ -8,11 +8,11 @@
         protected $telefone;
         protected $endereco;
 
-        public function __construct($codigo, $nome, $cpf){
+        /*public function __construct($codigo, $nome, $cpf){
             $this->codigo = $codigo;
             $this->nome = $nome;
             $this->cpf = $cpf;
-        } 
+        }*/
 
         //GETTERS E SETTERS
         public function getCodigo(){
