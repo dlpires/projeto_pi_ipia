@@ -1,15 +1,26 @@
+<?php
+    //PARA NÃO APARECER O ERRO NO NAVEGADOR
+    @ini_set('display_errors',1);
+    error_reporting(E_ALL & ~ E_NOTICE & ~ E_DEPRECATED);
+    //========================
+
+    $error_msg = $_GET["error"];
+
+    if($error_msg != ''){
+        $alert = "<div class=\"alert alert-danger\" role=\"alert\">{$error_msg}</h1></div>";
+    }
+
+    //  INICIANDO A SESSÃO DA PÁGINA
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     
     <!--PACOTES-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <!--
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -19,6 +30,24 @@
     <title>Página Inicial</title>
 </head>
 <body>
-    
+<div class="container text-center">
+    <h2>Login</h2>
+    <p>Entre com as suas credenciais para acessar o sistema.</p>
+    <form action="php/login.php" method="post">
+        <label for="username">Usuário</label><br>
+        <input type="text" name="username" id="username"/>
+        <br>
+        <label for="password">Senha</label><br>
+        <input type="password" name="password" id="password"/>
+        <br>
+        <br>
+        <?php echo $alert; ?>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+</div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
