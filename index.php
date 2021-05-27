@@ -30,21 +30,29 @@
     <title>Página Inicial</title>
 </head>
 <body>
-<div class="container text-center">
-    <h2>Login</h2>
-    <p>Entre com as suas credenciais para acessar o sistema.</p>
-    <form action="php/login.php" method="post">
-        <label for="username">Usuário</label><br>
-        <input type="text" name="username" id="username"/>
-        <br>
-        <label for="password">Senha</label><br>
-        <input type="password" name="password" id="password"/>
-        <br>
-        <br>
-        <?php echo $alert; ?>
-        <br>
-        <input type="submit" value="Login">
-    </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <form action="php/login.php" method="post">
+                <div class="form-group text-center">
+                    <h2>Login</h2>
+                    <small class="form-text text-muted">Entre com as suas credenciais para acessar o sistema.</small>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="form-check-label text-muted">Usuário</label><br>
+                    <input type="text" class="form-control form-control-lg" name="username" id="username" placeholder="Seu login"/>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-check-label text-muted">Senha</label><br>
+                    <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Sua senha"/>
+                </div>
+                <div class="form-group">
+                    <?php echo $alert; ?>
+                    <input type="submit" class="btn btn-primary" value="Login">
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
