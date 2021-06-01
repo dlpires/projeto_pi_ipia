@@ -9,9 +9,6 @@
     if($error_msg != ''){
         $alert = "<div class=\"alert alert-danger\" role=\"alert\">{$error_msg}</h1></div>";
     }
-
-    //  INICIANDO A SESSÃO DA PÁGINA
-    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -12,7 +12,7 @@
         private $estado;
 
         //CONSTRUTOR
-        public function __construct($cep){
+        /*public function __construct($cep){
             // formatar o cep removendo caracteres nao numericos
             $this->cep = preg_replace("/[^0-9]/", "", $cep);
             $url = "http://viacep.com.br/ws/$this->cep/xml/";
@@ -23,11 +23,27 @@
             $this->bairro = $xml->bairro;
             $this->cidade = $xml->localidade;
             $this->estado = $xml->uf;
-        }
+        }*/
 
         //GETTERS E SETTERS
-        public function setNumero($rua){
+        public function setNumero($numero){
+            $this->numero = $numero;
+        }
+
+        public function setRua($rua){
             $this->rua = $rua;
+        }
+
+        public function setBairro($bairro){
+            $this->bairro = $bairro;
+        }
+
+        public function setCidade($cidade){
+            $this->cidade = $cidade;
+        }
+
+        public function setEstado($estado){
+            $this->estado = $estado;
         }
 
         public function getNumero(){

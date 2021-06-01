@@ -16,7 +16,15 @@ $user->setUsuario($usuario);
 $user->setSenha($senha);
 
 if($user->validateLogin()){
-    header("Location: pages/principal.php?nome={$user->getNome()}");
+    //ANTES
+    //header("Location: pages/principal.php?nome={$user->getNome()}");
+    //DEPOIS
+    // INICIANDO SESSÃO
+    session_start();
+    // Armazenando 
+    $_SESSION['login'] = $usuario;
+    $_SESSION['username'] = $user->getNome();
+    header("Location: pages/template.php?title=Home%20Page&name_page=principal.php");
 }
 else {
     header("Location: ../index.php?error=Erro de login ou senha!!");

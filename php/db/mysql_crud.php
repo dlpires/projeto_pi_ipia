@@ -29,7 +29,9 @@ class Database{
 	public function connect(){
 		if(!$this->con){
 			$this->myconn = new mysqli($this->db_host,$this->db_user,$this->db_pass,$this->db_name);  // mysql_connect() with variables defined at the start of Database class
-            if($this->myconn->connect_errno > 0){
+			// SET UTF-8
+			$this->myconn->set_charset("utf8mb4");
+			if($this->myconn->connect_errno > 0){
                 array_push($this->result,$this->myconn->connect_error);
                 return false; // Problem selecting database return FALSE
             }else{

@@ -15,10 +15,10 @@
 ?>
 
 <form action="../cadastro_pessoa.php" method="post" class="needs-validation" novalidate>
-    <input type="hidden" name="tipo_cadastro" id="tipo_cadastro" value="Funcionario"/>
+    <input type="hidden" name="tipo_cadastro" id="tipo_cadastro" value="Cliente"/>
     <div class="form-group text-center">
-        <h2>Cadastrar novo funcionário</h2>
-        <small class="form-text text-muted">Cadastre um novo funcionário para acessar o sistema.</small><br>
+        <h2>Cadastrar novo cliente</h2>
+        <small class="form-text text-muted">Cadastre um novo cliente para ser registrado no sistema.</small><br>
         <?php echo $alert; ?>
     </div>
     <fieldset class="border p-5">
@@ -112,32 +112,8 @@
         </div>
     </fieldset>
 
-    <fieldset class="border p-5">
-        <legend class="w-auto">Dados do sistema</legend>
-    <div class="form-group">
-        <label for="username" class="form-check-label text-muted">Usuário: </label><br>
-        <input type="text" class="form-control form-control-lg" name="username" id="username" placeholder="Login" required/>
-        <div class="invalid-feedback">
-            Por favor, informe um login.
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="password" class="form-check-label text-muted">Senha: </label><br>
-        <input type="password" class="form-control form-control-lg" name="password" id="password" data-rule-password="true" placeholder="Senha" required/>
-        <div class="invalid-feedback">
-            Por favor, informe uma senha.
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="password" class="form-check-label text-muted">Repetir senha: </label><br>
-        <input type="password" class="form-control form-control-lg" name="rep_password" id="rep_password" data-rule-password="true" data-rule-equalTo="#password" placeholder="Repita a senha" required/>
-        <div class="invalid-feedback">
-            Por favor, repita a senha informada.
-        </div>
-    </div>
-    </fieldset>
     <br>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCadastro">Cadastrar Funcionário</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCadastro">Cadastrar Cliente</button>
     <input type="reset" class="btn btn-secondary" value="Limpar">
 
     <!-- Modal Confirmação -->
@@ -151,7 +127,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Você deseja estar cadastrando este funcionário?
+                Você deseja estar cadastrando este cliente?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>

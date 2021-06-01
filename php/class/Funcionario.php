@@ -1,7 +1,8 @@
 <?php
     //INCLUSÃO DA CLASSE PESSOA
-    include("Pessoa.php");
-    include('db/mysql_crud.php');
+    require_once("Pessoa.php");
+    require_once('db/mysql_crud.php');
+    require_once("Endereco.php");
     
     //CLASSE FUNCIONÁRIO
     class Funcionario extends Pessoa {
@@ -83,8 +84,76 @@
             }
         }
 
-        public function insert(){
+        public function cadastrarCliente($cliente){
+            $db = new Database();
+            $db->connect();
+            //Inserindo o Endereço
+            $db->insert('endereco',array('rua'=>$cliente->endereco->getRua(),
+                                         'numero'=>$cliente->endereco->getNumero(),
+                                         'bairro' => $cliente->endereco->getBairro(), 
+                                         'cep'=>$cliente->endereco->getCep(), 
+                                         'cidade'=>$cliente->endereco->getCidade(), 
+                                         'estado'=>$cliente->endereco->getEstado()));
 
+            $res = $db->getResult();
+
+            //Inserindo os dados do Funcionário    
+            $result = $db->insert('cliente',array('nome_cliente'=>$cliente->nome,
+                                            'cpf_cliente'=>$cliente->cpf,
+                                            'tel_cliente' => $cliente->telefone, 
+                                            'rg_cliente'=>$cliente->rg,
+                                            'Endereco_codigo_endereco' => $res[0]));  // Table name, column names and respective values
+            $db->getResult();
+
+            $db->disconnect();//CHAMA MÉTODO disconnect
+
+            return $result;
+        }
+
+        public function cadastrarFuncionario($funcionario){
+            $db = new Database();
+            $db->connect();
+            //Inserindo o Endereço
+            $db->insert('endereco',array('rua'=>$funcionario->endereco->getRua(),
+                                         'numero'=>$funcionario->endereco->getNumero(),
+                                         'bairro' => $funcionario->endereco->getBairro(), 
+                                         'cep'=>$funcionario->endereco->getCep(), 
+                                         'cidade'=>$funcionario->endereco->getCidade(), 
+                                         'estado'=>$funcionario->endereco->getEstado()));
+
+            $res = $db->getResult();
+            //print_r($res);
+            //PEGANDO O ID DO ENDEREÇO ADICIONADO --> NÃO NECESSITA MAIS
+            /*$db->select('endereco', 'cod_endereco', NULL, NULL, 'cod_endereco DESC', '1');
+            $res = $db->getResult();*/
+            //print_r($res);
+
+            //Inserindo os dados do Funcionário    
+            $result = $db->insert('funcionario',array('nome_func'=>$funcionario->nome,
+                                            'cpf_func'=>$funcionario->cpf,
+                                            'tel_func' => $funcionario->telefone, 
+                                            'rg_func'=>$funcionario->rg, 
+                                            'usuario'=>$funcionario->usuario, 
+                                            'senha'=>$funcionario->senha, 
+                                            'cargo' => 'Administrador',
+                                            'Endereco_codigo_endereco' => $res[0]));  // Table name, column names and respective values
+            $db->getResult();
+
+            $db->disconnect();//CHAMA MÉTODO disconnect
+
+            return $result;
+            //print_r($res);
+
+            /*$db->select('funcionario', 'usuario', NULL, "usuario = '{$funcionario->usuario}'");
+            $res = $db->getResult();
+
+            //Verificando se o usuario foi cadastrado
+            if($res[0]["usuario"] == $funcionario->usuario){
+                return true;
+            } else {
+                return false;
+            }*/
+            //print_r($res);
         }
 
     }

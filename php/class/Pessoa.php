@@ -5,6 +5,7 @@
         protected $codigo;
         protected $nome;
         protected $cpf;
+        protected $rg;
         protected $telefone;
         protected $endereco;
 
@@ -37,6 +38,14 @@
 
         public function getCpf(){
             return $this->cpf;
+        }
+
+        public function setRg($rg){
+            $this->rg = $rg;
+        }
+
+        public function getRg(){
+            return $this->rg;
         }
 
         public function setTelefone($telefone){
