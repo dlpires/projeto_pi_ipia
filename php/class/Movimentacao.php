@@ -4,7 +4,8 @@
         //ATRIBUTOS
 
         private $cod_mov;
-        private $venda;
+        private $produto;
+        private $funcionario;
         private $data_mov;
         private $qtd_produto;
         private $estoque_min;
@@ -12,13 +13,14 @@
         private $tipo_mov;
 
         //CONSTRUTOR
-        public function __construct($cod_mov, $venda, $data_mov, $qtd_produto, $estoque_max, $estoque_min){
-            $this->cod_mov = $cod_mov;
-            $this->venda = $venda;
+        public function __construct($produto, $funcionario, $data_mov, $qtd_produto, $estoque_max, $estoque_min, $tipo_mov){
+            $this->produto = $produto;
+            $this->funcionario = $funcionario;
             $this->data_mov = $data_mov;
             $this->qtd_produto = $qtd_produto;
             $this->estoque_max = $estoque_max;
             $this->estoque_min = $estoque_min;
+            $this->tipo_mov = $tipo_mov;
         }
 
         //GETTERS E SETTERS
@@ -30,12 +32,20 @@
             return $this->cod_mov;
         }
 
-        public function setVenda($venda){
-            $this->venda = $venda;
+        public function setProduto($produto){
+            $this->produto = $produto;
         }
 
-        public function getVenda(){
-            return $this->venda;
+        public function getProduto(){
+            return $this->produto;
+        }
+
+        public function setFuncionario($funcionario){
+            $this->funcionario = $funcionario;
+        }
+
+        public function getFuncionario(){
+            return $this->funcionario;
         }
 
         public function setDataMov($data_mov){

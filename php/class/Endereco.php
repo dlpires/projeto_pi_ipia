@@ -26,6 +26,14 @@
         }*/
 
         //GETTERS E SETTERS
+        public function setCod($cod_endereco){
+            $this->cod_endereco = $cod_endereco;
+        }
+
+        public function getCod($cod_endereco){
+            return $this->cod_endereco;
+        }
+        
         public function setNumero($numero){
             $this->numero = $numero;
         }

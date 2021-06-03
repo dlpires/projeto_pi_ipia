@@ -1,5 +1,7 @@
 <!--TEMPLATE PHP (ONDE TODAS AS PÁGINAS SERÃO ABERTAS)-->
 <?php
+    //CAMINHO DA PASTA DE ARQUIVOS
+    define('ROOTPATH', __DIR__);
     //PARA NÃO APARECER O ERRO NO NAVEGADOR
     @ini_set('display_errors',1);
     error_reporting(E_ALL & ~ E_NOTICE & ~ E_DEPRECATED);
@@ -76,7 +78,7 @@
                                     <a class="dropdown-item" href="?title=Cadastro Funcionário&name_page=cadastro_func.php">Funcionário</a>
                                     <a class="dropdown-item" href="?title=Cadastro Cliente&name_page=cadastro_cliente.php">Cliente</a>
                                     <a class="dropdown-item" href="#">Fornecedor</a>
-                                    <a class="dropdown-item" href="#">Produto</a>
+                                    <a class="dropdown-item" href="?title=Cadastro Produto&name_page=cadastro_produto.php">Produto</a>
                                 <h4>
                             </li>
                             <li class="nav-item dropdown">
@@ -86,7 +88,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="#">Funcionário</a>
-                                    <a class="dropdown-item" href="#">Cliente</a>
+                                    <a class="dropdown-item" href="?title=Lista Cliente&name_page=consulta_cliente.php">Cliente</a>
                                     <a class="dropdown-item" href="#">Fornecedor</a>
                                     <a class="dropdown-item" href="#">Produto</a>
                                 </h4>

@@ -1,8 +1,9 @@
 <?php
     //INCLUSÃO DA CLASSE PESSOA
     require_once("Pessoa.php");
-    require_once('db/mysql_crud.php');
+    require_once(ROOTPATH."/../db/mysql_crud.php");
     require_once("Endereco.php");
+    require_once("Cliente.php");
     
     //CLASSE FUNCIONÁRIO
     class Funcionario extends Pessoa {
@@ -67,7 +68,7 @@
             //CHAMA O MÉTODO select
             $db->select('funcionario','*', NULL, "usuario = '{$this->usuario}'", NULL); // Table name, Column Names, JOIN, WHERE conditions, ORDER BY conditions
 
-            //PUXAO RESULTADO DO SELECT
+            //PUXA O RESULTADO DO SELECT
             $res = $db->getResult();
 
             //print_r($res);
@@ -76,12 +77,55 @@
 
             $this->nome = $res[0]['nome_func'];
             $this->cpf = $res[0]["cpf_func"];
+            $this->codigo = $res[0]["cod_func"];
 
             if($res[0]["usuario"] == $this->usuario && $res[0]["senha"] == $this->senha){
                 return true;
             } else {
                 return false;
             }
+        }
+
+        //CONSULTA DA LISTA DE CLIENTES
+        public function consultarClientes(){ 
+            $db = new Database();
+            $db->connect();
+
+            //PEGANDO LISTA DE CLIENTES
+            $db->select('cliente', '*', NULL, NULL);
+            $res = $db->getResult();
+            
+            $lista_clientes = [];
+
+            //LENDO OS RESULTADOS ENCONTRADOS
+            for($i = 0; $i < count($res); $i++){
+                $cliente = new Cliente();
+                
+                $cliente->setCodigo($res[$i]["cod_cliente"]);
+                $cliente->setNome($res[$i]["nome_cliente"]);
+                $cliente->setCpf($res[$i]["cpf_cliente"]);
+                $cliente->setTelefone($res[$i]["tel_cliente"]);
+                $cliente->setRg($res[$i]["rg_cliente"]);
+
+                //PEGANDO LISTA DE CLIENTES
+                $db->select('endereco', '*', NULL, "cod_endereco = '{$res[$i]["Endereco_codigo_endereco"]}'");
+                $res2 = $db->getResult();
+
+                $cliente->setEndereco(new Endereco());
+                $cliente->getEndereco()->setCod($res2[0]["cod_endereco"]);
+                $cliente->getEndereco()->setRua($res2[0]["rua"]);
+                $cliente->getEndereco()->setNumero($res2[0]["numero"]);
+                $cliente->getEndereco()->setBairro($res2[0]["bairro"]);
+                $cliente->getEndereco()->setCep($res2[0]["cep"]);
+                $cliente->getEndereco()->setCidade($res2[0]["cidade"]);
+                $cliente->getEndereco()->setCod($res2[0]["estado"]);
+
+                array_push($lista_clientes, $cliente);
+            }
+
+            //FECHANDO CONEXÃO
+            $db->disconnect();
+            return $lista_clientes;
         }
 
         public function cadastrarCliente($cliente){
@@ -122,7 +166,6 @@
                                          'estado'=>$funcionario->endereco->getEstado()));
 
             $res = $db->getResult();
-            //print_r($res);
             //PEGANDO O ID DO ENDEREÇO ADICIONADO --> NÃO NECESSITA MAIS
             /*$db->select('endereco', 'cod_endereco', NULL, NULL, 'cod_endereco DESC', '1');
             $res = $db->getResult();*/

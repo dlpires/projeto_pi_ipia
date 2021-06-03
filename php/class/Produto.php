@@ -12,12 +12,12 @@
             $this->cod_produto = $cod_produto;
             $this->dsc_produto = $dsc_produto;
             $this->preco = $preco;
-            echo "OBJETO CRIADO COM SUCESSOOOO!!!!";
-            echo "<br>";
+            //echo "OBJETO CRIADO COM SUCESSOOOO!!!!";
+            //echo "<br>";
         }
 
         public function __destruct(){
-            echo "OBJETO DESTRUIDO!!!";
+            //echo "OBJETO DESTRUIDO!!!";
         }
 
         // GET E SET

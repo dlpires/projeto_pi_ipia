@@ -24,6 +24,7 @@ if($user->validateLogin()){
     // Armazenando 
     $_SESSION['login'] = $usuario;
     $_SESSION['username'] = $user->getNome();
+    $_SESSION['cod_user'] = $user->getCodigo();
     header("Location: pages/template.php?title=Home%20Page&name_page=principal.php");
 }
 else {
