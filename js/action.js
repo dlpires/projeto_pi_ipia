@@ -73,3 +73,66 @@ $("#searchCEP").click(function(){
         });
     }, false);
 })();
+
+//ADICIONAR PRODUTOS NA LISTA DE VENDA
+$("#addListaVenda").click(function(){
+    function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#rua").val("");
+        $("#bairro").val("");
+        $("#cidade").val("");
+        $("#estado").val("");
+    }
+});
+
+//SELECIONAR MÉTODO DE PESQUISA DE CLIENTE NA VENDA
+$("#pesquisarCliente").change(function() {
+    if($(this).val() == "nome"){
+        $('#cod_cliente').attr('readonly','');
+        $('#cod_cliente').attr('placeholder','');
+        $('#nome_cliente').removeAttr('readonly','');
+        $('#nome_cliente').attr('placeholder','Pesquisar por nome');
+    }
+    else{
+        $('#nome_cliente').attr('readonly','');
+        $('#nome_cliente').attr('placeholder','');
+        $('#cod_cliente').removeAttr('readonly','');
+        $('#cod_cliente').attr('placeholder','Pesquisar por código');
+    }
+});
+
+//SELECIONAR MÉTODO DE PESQUISA DE PRODUTO NA VENDA
+$("#pesquisarProduto").change(function() {
+    if($(this).val() == "descricao"){
+        $('#codigo').attr('readonly','');
+        $('#codigo').attr('placeholder','');
+        $('#desc').removeAttr('readonly','');
+        $('#desc').attr('placeholder','Pesquisar por descrição');
+    }
+    else{
+        $('#desc').attr('readonly','');
+        $('#desc').attr('placeholder','');
+        $('#codigo').removeAttr('readonly','');
+        $('#codigo').attr('placeholder','Pesquisar por código');
+    }
+});
+
+//BOTAO DETALHES (LISTAS)
+$('#btnDetalhes').click(function(){
+    $('input').attr('readonly','');
+    $('.btnSalvar').hide();
+    $('.btnLimpar').hide();
+    $('.btnPesquisar').hide();
+});
+
+//BOTAO EDITAR (LISTAS)
+$('#btnEditar').click(function(){
+    $('input').removeAttr('readonly','');
+    $('#rua').attr('readonly','');
+    $('#bairro').attr('readonly','');
+    $('#cidade').attr('readonly','');
+    $('#estado').attr('readonly','');
+    $('.btnSalvar').show();
+    $('.btnLimpar').show();
+    $('.btnPesquisar').show();
+});

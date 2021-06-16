@@ -1,3 +1,6 @@
+<?php
+    echo $_POST["nome_cliente"];
+?>
 <div class="row">
     <div class="col">
     <form action="php/cad_venda.php" method="post">
@@ -9,13 +12,22 @@
             <legend class="w-auto">Dados do Cliente</legend>
             <div class="form-group">
                 <div class="row">
+                    <div class="col-6">
+                        <label for="pesquisarCliente">Pesquisar por: </label>
+                        <select class="form-control form-control-lg" id="pesquisarCliente">
+                            <option value="nome">Nome</option>
+                            <option value="codigo">Código</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col">
                         <label for="nome_cliente" class="form-check-label text-muted">Nome: </label><br>
                         <input type="text" class="form-control form-control-lg" name="nome_cliente" id="nome_cliente" placeholder="Pesquisar por nome" required/>
                     </div>
                     <div class="col">
                         <label for="cod_cliente" class="form-check-label text-muted">Código: </label><br>
-                        <input type="text" class="form-control form-control-lg" name="cod_cliente" id="cod_cliente" placeholder="Pesquisar por código" required/>
+                        <input type="text" class="form-control form-control-lg" name="cod_cliente" id="cod_cliente" readonly required/>
                     </div>
                 </div>
                 <div class="row">
@@ -34,13 +46,22 @@
             <legend class="w-auto">Item de Venda</legend>
             <div class="form-group">
                 <div class="row">
+                    <div class="col-6">
+                        <label for="pesquisarProduto">Pesquisar por: </label>
+                        <select class="form-control form-control-lg" id="pesquisarProduto">
+                            <option value="descricao">Descrição</option>
+                            <option value="codigo">Código</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col">
                         <label for="desc" class="form-check-label text-muted">Descrição: </label><br>
                         <input type="text" class="form-control form-control-lg" name="desc" id="desc" placeholder="Pesquisar pela descrição" required/>
                     </div>
                     <div class="col">
                         <label for="codigo" class="form-check-label text-muted">Código: </label><br>
-                        <input type="text" class="form-control form-control-lg" name="codigo" id="codigo" placeholder="Pesquisar por código" required/>
+                        <input type="text" class="form-control form-control-lg" name="codigo" id="codigo" readonly required/>
                     </div>
                 </div>
                 <div class="row">

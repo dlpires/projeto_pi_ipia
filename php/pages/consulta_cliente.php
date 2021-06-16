@@ -1,5 +1,5 @@
 <?php
-    include_once("..\class\Funcionario.php");
+    include_once("../class/Funcionario.php");
 
     $func = new Funcionario();
     
@@ -36,17 +36,55 @@
                     <td><?php echo $cliente->getTelefone(); ?></td>
                     <td><?php echo $cliente->getRg(); ?></td>
                     <td>
-                        <button type="button" id="<?php echo $i; ?>" class="btn btn-secondary" data-toggle="modal" data-target="#modalDetalhes" data-placement="top" title="Detalhes">
+                        <button id="btnDetalhes" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalDetalhes<?php echo $cliente->getCodigo(); ?>" data-placement="top" title="Detalhes">
                             <span class="fas fa-align-justify"></span>
                         </button>
-                        <button type="button" id="<?php echo $i; ?>" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar" data-placement="top" title="Editar">
+                        <button id="btnEditar" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar<?php echo $cliente->getCodigo(); ?>" data-placement="top" title="Editar">
                             <span class="fas fa-edit"></span>
                         </button>
-                        <button type="button" id="<?php echo $i; ?>" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-placement="top" title="Excluir">
+                        <button id="btnExcluir" type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir<?php echo $cliente->getCodigo(); ?>" data-placement="top" title="Excluir">
                             <span class="fas fa-eraser"></span>
                         </button>
                     </td>
                 </tr>
+                <!-- Modal Detalhes -->
+                <div class="modal fade" id="modalDetalhes<?php echo $cliente->getCodigo(); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Detalhes</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <?php include("form_cliente.php"); ?>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Editar -->
+                <div class="modal fade" id="modalEditar<?php echo $cliente->getCodigo(); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <?php include("form_cliente.php"); ?>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
         <?php 
                 //CONTADOR DE LISTA
                 $i = $i + 1;    
@@ -57,24 +95,3 @@
     </div>
 </div>
 <br>
-<?php //function modalDetalhes(){ ?>
-    <!-- Modal Detalhes -->
-    <div class="modal fade" id="modalDetalhes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalhes</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <?php include("cadastro_cliente.php"); ?>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-            </div>
-            </div>
-        </div>
-    </div>
-<?php //} ?>

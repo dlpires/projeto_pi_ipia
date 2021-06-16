@@ -1,12 +1,13 @@
 <?php
+    session_start();
     // RECEBENDO O TIPO DE CADASTRO
     $tipo_cadastro = $_POST["tipo_cadastro"];
 
     require_once('class/Funcionario.php');
     require_once('class/Endereco.php');
-    session_start();
+
     //Funcionario que cadastrou 
-    $func = new Funcionario;
+    $func = new Funcionario();
     $func->setNome($_SESSION['login']);
     $func->setUsuario($_SESSION['username']);
 

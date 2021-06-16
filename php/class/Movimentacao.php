@@ -13,13 +13,11 @@
         private $tipo_mov;
 
         //CONSTRUTOR
-        public function __construct($produto, $funcionario, $data_mov, $qtd_produto, $estoque_max, $estoque_min, $tipo_mov){
+        public function __construct($produto, $funcionario, $data_mov, $qtd_produto, $tipo_mov){
             $this->produto = $produto;
             $this->funcionario = $funcionario;
             $this->data_mov = $data_mov;
             $this->qtd_produto = $qtd_produto;
-            $this->estoque_max = $estoque_max;
-            $this->estoque_min = $estoque_min;
             $this->tipo_mov = $tipo_mov;
         }
 

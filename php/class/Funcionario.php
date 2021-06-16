@@ -1,9 +1,11 @@
 <?php
     //INCLUSÃO DA CLASSE PESSOA
     require_once("Pessoa.php");
-    require_once(ROOTPATH."/../db/mysql_crud.php");
+    require_once(__DIR__."/../db/mysql_crud.php");
     require_once("Endereco.php");
     require_once("Cliente.php");
+    require_once("Movimentacao.php");
+    require_once("Produto.php");
     
     //CLASSE FUNCIONÁRIO
     class Funcionario extends Pessoa {
@@ -118,7 +120,7 @@
                 $cliente->getEndereco()->setBairro($res2[0]["bairro"]);
                 $cliente->getEndereco()->setCep($res2[0]["cep"]);
                 $cliente->getEndereco()->setCidade($res2[0]["cidade"]);
-                $cliente->getEndereco()->setCod($res2[0]["estado"]);
+                $cliente->getEndereco()->setEstado($res2[0]["estado"]);
 
                 array_push($lista_clientes, $cliente);
             }
@@ -126,6 +128,48 @@
             //FECHANDO CONEXÃO
             $db->disconnect();
             return $lista_clientes;
+        }
+
+        //CONSULTA DA LISTA DE CLIENTES
+        public function consultarProdutos(){ 
+            $db = new Database();
+            $db->connect();
+
+            //PEGANDO LISTA DE MOVIMENTACAO
+            $db->select('movimentacao', 'Produto_cod_produto, qtd_produto, tipo_mov', NULL, NULL);
+            $res = $db->getResult();
+            
+            $lista_produtos = [];
+
+            //LENDO OS RESULTADOS ENCONTRADOS
+            for($i = 0; $i < count($res); $i++){
+                $mov = new Movimentacao();
+                
+                $mov->setCodigo($res[$i]["cod_cliente"]);
+                $mov->setNome($res[$i]["nome_cliente"]);
+                $mov->setCpf($res[$i]["cpf_cliente"]);
+                $mov->setTelefone($res[$i]["tel_cliente"]);
+                $mov->setRg($res[$i]["rg_cliente"]);
+
+                //PEGANDO LISTA DE CLIENTES
+                $db->select('endereco', '*', NULL, "cod_endereco = '{$res[$i]["Endereco_codigo_endereco"]}'");
+                $res2 = $db->getResult();
+
+                $mov->setEndereco(new Endereco());
+                $mov->getEndereco()->setCod($res2[0]["cod_endereco"]);
+                $mov->getEndereco()->setRua($res2[0]["rua"]);
+                $mov->getEndereco()->setNumero($res2[0]["numero"]);
+                $mov->getEndereco()->setBairro($res2[0]["bairro"]);
+                $mov->getEndereco()->setCep($res2[0]["cep"]);
+                $mov->getEndereco()->setCidade($res2[0]["cidade"]);
+                $mov->getEndereco()->setCod($res2[0]["estado"]);
+
+                array_push($lista_produtos, $prod);
+            }
+
+            //FECHANDO CONEXÃO
+            $db->disconnect();
+            return $lista_produtos;
         }
 
         public function cadastrarCliente($cliente){
@@ -197,6 +241,46 @@
                 return false;
             }*/
             //print_r($res);
+        }
+
+        //CADASTRAR MOVIMENTAÇÃO
+        public function cadastrarMovimentacao($mov){
+            //Inserindo o produto na tabela Produto
+            $res = $mov->getFuncionario()->cadastrarProduto($mov->getProduto());
+            
+            //INSTANCIA PARA CONEXÃO BANCO DE DADOS
+            $db = new Database();
+            $db->connect();
+
+            //Inserindo os dados para cadastro da movimentacao   
+            $result = $db->insert('movimentacao',array('dt_mov'=>$mov->getDataMov(),
+                                            'qtd_produto'=>$mov->getQtdProduto(),
+                                            'tipo_mov'=>$mov->getTipoMov(),
+                                            'Funcionario_cod_func' => $mov->getFuncionario()->getCodigo(),
+                                            'Produto_cod_produto' => $res[0]));  // Table name, column names and respective values
+            $db->getResult();
+
+            $db->disconnect();//CHAMA MÉTODO disconnect
+
+            return $result;
+        }
+
+        //CADASTRAR PRODUTO
+        private function cadastrarProduto($prod){
+            $db = new Database();
+            $db->connect();
+            //Inserindo o produto na tabela Produto
+            $db->insert('produto',array('dsc_produto'=>$prod->getDscProduto(),
+                                        'vl_unitario'=>$prod->getPreco(),
+                                        'estoque_min'=>$prod->getEstMin(),
+                                        'estoque_max'=>$prod->getEstMax(),
+                                        'un_medida'=>$prod->getUnMedida()));
+
+            $res = $db->getResult();
+
+            $db->disconnect();//CHAMA MÉTODO disconnect
+
+            return $res;
         }
 
     }

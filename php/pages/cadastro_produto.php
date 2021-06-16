@@ -14,7 +14,7 @@
     }
 ?>
 
-<form action="../cadastro_produto.php" method="post" class="needs-validation" novalidate>
+<form action="../cadastro_mov.php" method="post" class="needs-validation" novalidate>
     <input type="hidden" name="tipo_cadastro" id="tipo_cadastro" value="novo_produto"/>
     <div class="form-group text-center">
         <h2>Cadastrar novo produto</h2>
@@ -33,8 +33,8 @@
                     </div>
                 </div>
                 <div class="col">
-                <label for="preco" class="form-check-label text-muted">Valor unitário: </label><br>
-                    <input type="number" class="form-control form-control-lg" name="preco" id="preco" placeholder="Somente número" required/>
+                <label for="preco" class="form-check-label text-muted">Valor unitário (R$): </label><br>
+                    <input type="number" class="form-control form-control-lg" name="preco" id="preco" placeholder="Somente número" step="0.01" required/>
                     <div class="invalid-feedback">
                         Por favor, informe um preço.
                     </div>
@@ -83,7 +83,7 @@
 
     <!-- Modal Confirmação -->
     <div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Deseja continuar?</h5>

@@ -1,0 +1,30 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 50px;
+  width: 50px;
+  outline: silver;
+  background-size: 50%, 50%;
+  border-radius: 50%;
+  border: 1px solid silver;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 27px;
+  color: black;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 27px;
+  color: black;
+}
+
+.carousel-indicators li {
+    background-color: silver;
+}
+.carousel-indicators .active {
+    background-color: black;
+}

@@ -1,7 +1,13 @@
-<!--TEMPLATE PHP (ONDE TODAS AS PÁGINAS SERÃO ABERTAS)-->
 <?php
+    // TEMPLATE PHP (ONDE TODAS AS PÁGINAS SERÃO ABERTAS)
+    // INICIANDO SESSÃO
+    session_start();
     //CAMINHO DA PASTA DE ARQUIVOS
-    define('ROOTPATH', __DIR__);
+    //define('ROOTPATH', __DIR__);
+
+    //TIMEZONE
+    date_default_timezone_set('America/Sao_Paulo');
+    
     //PARA NÃO APARECER O ERRO NO NAVEGADOR
     @ini_set('display_errors',1);
     error_reporting(E_ALL & ~ E_NOTICE & ~ E_DEPRECATED);
@@ -11,9 +17,6 @@
     $title = $_GET["title"];
     $logout = $_GET["logout"];
     $result_cad = '';
-
-    // INICIANDO SESSÃO
-    session_start();
 
     if($title == ''){
         $title = 'Sistema';
@@ -37,6 +40,7 @@
     
     <!--PACOTES-->
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <!--
@@ -51,15 +55,18 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+                <nav class="navbar navbar-expand-xl navbar-dark bg-info">
                     <a class="navbar-brand" href="?title=Home Page&name_page=principal.php"><img src="../../img/logo.jpg" alt="Logo" class="img-thumbnail"/></a>       
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                     <div class="collapse navbar-collapse justify-content-center font-weight-bold" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <h4><a class="nav-link fas fa-align-justify" href="?title=Home%20Page&name_page=principal.php"> Principal<span class="sr-only">(Página atual)</span></a></h4>
+                                <h5><a class="nav-link fas fa-align-justify" href="?title=Home%20Page&name_page=principal.php"> Principal<span class="sr-only">(Página atual)</span></a></h5>
                             </li>
                             <li class="nav-item dropdown">
-                                <h4>
+                                <h5>
                                     <a class="nav-link dropdown-toggle fas fa-chevron-circle-down" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                      Movimentação
                                     </a>
@@ -67,10 +74,10 @@
                                     <a class="dropdown-item" href="?title=Venda&name_page=venda.php"> Venda</a>
                                     <a class="dropdown-item" href="#">Outra Saida</a>
                                     <a class="dropdown-item" href="#">Entrada</a>
-                                </h4>
+                                </h5>
                             </li>
                             <li class="nav-item dropdown">
-                                <h4>
+                                <h5>
                                     <a class="nav-link dropdown-toggle fas fa-sign-in-alt" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                      Cadastro
                                     </a>
@@ -79,10 +86,10 @@
                                     <a class="dropdown-item" href="?title=Cadastro Cliente&name_page=cadastro_cliente.php">Cliente</a>
                                     <a class="dropdown-item" href="#">Fornecedor</a>
                                     <a class="dropdown-item" href="?title=Cadastro Produto&name_page=cadastro_produto.php">Produto</a>
-                                <h4>
+                                <h5>
                             </li>
                             <li class="nav-item dropdown">
-                                <h4>
+                                <h5>
                                     <a class="nav-link dropdown-toggle fas fa-search" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                      Consultar
                                     </a>
@@ -91,10 +98,10 @@
                                     <a class="dropdown-item" href="?title=Lista Cliente&name_page=consulta_cliente.php">Cliente</a>
                                     <a class="dropdown-item" href="#">Fornecedor</a>
                                     <a class="dropdown-item" href="#">Produto</a>
-                                </h4>
+                                </h5>
                             </li>
                             <li class="nav-item">
-                                <h4><a class="nav-link fas fa-sign-out-alt" href="?title=Home%20Page&name_page=principal.php" data-toggle="modal" data-target="#modalLogout"> Logout</a></h4>
+                                <h5><a class="nav-link fas fa-sign-out-alt" href="?title=Home%20Page&name_page=principal.php" data-toggle="modal" data-target="#modalLogout"> Logout</a></h5>
                             </li>
                         </ul>
                     </div>
@@ -105,7 +112,7 @@
     
     <!-- Modal Logout -->
     <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Deseja realmente sair?</h5>
