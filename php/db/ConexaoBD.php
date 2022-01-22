@@ -5,9 +5,9 @@
         private static $instancia = null;
         private $conn;
         
-        private $servername = "localhost";
+        private $servername = "mariadb1";
         private $username = "root";
-        private $password = "";
+        private $password = "root";
         private $banco = "projeto_3_ipia";
 
         //Construtor: Instanciando o banco de dados

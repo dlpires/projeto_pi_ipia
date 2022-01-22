@@ -11,9 +11,9 @@ class Database{
 	 * means that they will only be available with the
 	 * Database class
 	 */
-	private $db_host = "localhost";  // Change as required
+	private $db_host = "mariadb1";  // Change as required
 	private $db_user = "root";  // Change as required
-	private $db_pass = "";  // Change as required
+	private $db_pass = "root";  // Change as required
 	private $db_name = "projeto_3_ipia";	// Change as required
 
 	/*

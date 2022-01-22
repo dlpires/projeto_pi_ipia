@@ -76,7 +76,7 @@ ENGINE = InnoDB;
 
 -- INSERT ADMIN USER
 
-INSERT INTO `projeto_3_ipia`.`endereco`
+INSERT INTO `projeto_3_ipia`.`Endereco`
 (`cod_endereco`,
 `rua`,
 `numero`,
@@ -94,7 +94,7 @@ VALUES
 'SP');
 
 
-INSERT INTO `projeto_3_ipia`.`funcionario`
+INSERT INTO `projeto_3_ipia`.`Funcionario`
 (`cod_func`,
 `nome_func`,
 `cpf_func`,

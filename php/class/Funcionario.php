@@ -68,7 +68,7 @@
             $db->connect();//CHAMA MÉTODO connect
 
             //CHAMA O MÉTODO select
-            $db->select('funcionario','*', NULL, "usuario = '{$this->usuario}'", NULL); // Table name, Column Names, JOIN, WHERE conditions, ORDER BY conditions
+            $db->select('Funcionario','*', NULL, "usuario = '{$this->usuario}'", NULL); // Table name, Column Names, JOIN, WHERE conditions, ORDER BY conditions
 
             //PUXA O RESULTADO DO SELECT
             $res = $db->getResult();
@@ -94,7 +94,7 @@
             $db->connect();
 
             //PEGANDO LISTA DE CLIENTES
-            $db->select('cliente', '*', NULL, NULL);
+            $db->select('Cliente', '*', NULL, NULL);
             $res = $db->getResult();
             
             $lista_clientes = [];
@@ -110,7 +110,7 @@
                 $cliente->setRg($res[$i]["rg_cliente"]);
 
                 //PEGANDO LISTA DE CLIENTES
-                $db->select('endereco', '*', NULL, "cod_endereco = '{$res[$i]["Endereco_codigo_endereco"]}'");
+                $db->select('Endereco', '*', NULL, "cod_endereco = '{$res[$i]["Endereco_codigo_endereco"]}'");
                 $res2 = $db->getResult();
 
                 $cliente->setEndereco(new Endereco());
@@ -136,7 +136,7 @@
             $db->connect();
 
             //PEGANDO LISTA DE MOVIMENTACAO
-            $db->select('movimentacao', 'Produto_cod_produto, qtd_produto, tipo_mov', NULL, NULL);
+            $db->select('Movimentacao', 'Produto_cod_produto, qtd_produto, tipo_mov', NULL, NULL);
             $res = $db->getResult();
             
             $lista_produtos = [];
@@ -152,7 +152,7 @@
                 $mov->setRg($res[$i]["rg_cliente"]);
 
                 //PEGANDO LISTA DE CLIENTES
-                $db->select('endereco', '*', NULL, "cod_endereco = '{$res[$i]["Endereco_codigo_endereco"]}'");
+                $db->select('Endereco', '*', NULL, "cod_endereco = '{$res[$i]["Endereco_codigo_endereco"]}'");
                 $res2 = $db->getResult();
 
                 $mov->setEndereco(new Endereco());
@@ -176,7 +176,7 @@
             $db = new Database();
             $db->connect();
             //Inserindo o Endereço
-            $db->insert('endereco',array('rua'=>$cliente->endereco->getRua(),
+            $db->insert('Endereco',array('rua'=>$cliente->endereco->getRua(),
                                          'numero'=>$cliente->endereco->getNumero(),
                                          'bairro' => $cliente->endereco->getBairro(), 
                                          'cep'=>$cliente->endereco->getCep(), 
@@ -186,7 +186,7 @@
             $res = $db->getResult();
 
             //Inserindo os dados do Funcionário    
-            $result = $db->insert('cliente',array('nome_cliente'=>$cliente->nome,
+            $result = $db->insert('Cliente',array('nome_cliente'=>$cliente->nome,
                                             'cpf_cliente'=>$cliente->cpf,
                                             'tel_cliente' => $cliente->telefone, 
                                             'rg_cliente'=>$cliente->rg,
@@ -202,7 +202,7 @@
             $db = new Database();
             $db->connect();
             //Inserindo o Endereço
-            $db->insert('endereco',array('rua'=>$funcionario->endereco->getRua(),
+            $db->insert('Endereco',array('rua'=>$funcionario->endereco->getRua(),
                                          'numero'=>$funcionario->endereco->getNumero(),
                                          'bairro' => $funcionario->endereco->getBairro(), 
                                          'cep'=>$funcionario->endereco->getCep(), 
@@ -216,7 +216,7 @@
             //print_r($res);
 
             //Inserindo os dados do Funcionário    
-            $result = $db->insert('funcionario',array('nome_func'=>$funcionario->nome,
+            $result = $db->insert('Funcionario',array('nome_func'=>$funcionario->nome,
                                             'cpf_func'=>$funcionario->cpf,
                                             'tel_func' => $funcionario->telefone, 
                                             'rg_func'=>$funcionario->rg, 
@@ -253,7 +253,7 @@
             $db->connect();
 
             //Inserindo os dados para cadastro da movimentacao   
-            $result = $db->insert('movimentacao',array('dt_mov'=>$mov->getDataMov(),
+            $result = $db->insert('Movimentacao',array('dt_mov'=>$mov->getDataMov(),
                                             'qtd_produto'=>$mov->getQtdProduto(),
                                             'tipo_mov'=>$mov->getTipoMov(),
                                             'Funcionario_cod_func' => $mov->getFuncionario()->getCodigo(),
@@ -270,7 +270,7 @@
             $db = new Database();
             $db->connect();
             //Inserindo o produto na tabela Produto
-            $db->insert('produto',array('dsc_produto'=>$prod->getDscProduto(),
+            $db->insert('Produto',array('dsc_produto'=>$prod->getDscProduto(),
                                         'vl_unitario'=>$prod->getPreco(),
                                         'estoque_min'=>$prod->getEstMin(),
                                         'estoque_max'=>$prod->getEstMax(),
